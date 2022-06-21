@@ -75,7 +75,7 @@ jobs:
           tags: myapp:test
       - name: Test
         run: |
-          docker run --rm -d myapp:test -p 8080:8080
+          docker run --rm -d -p 8080:8080 myapp:test
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
