@@ -92,7 +92,7 @@ jobs:
             dev
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@V3
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: true
