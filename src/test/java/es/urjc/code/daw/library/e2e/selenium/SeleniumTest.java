@@ -2,8 +2,9 @@ package es.urjc.code.daw.library.e2e.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import es.urjc.code.daw.library.Application;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,9 +18,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-
-import es.urjc.code.daw.library.Application;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SeleniumTest {
@@ -39,6 +37,7 @@ public class SeleniumTest {
 	public void setupTest() {
         this.driver = new ChromeDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.port = Integer.parseInt(System.getProperty("port", port+""));
 	}
 
 	@AfterEach
