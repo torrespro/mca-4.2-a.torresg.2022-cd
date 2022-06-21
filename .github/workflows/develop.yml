@@ -99,12 +99,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
-            ghcr.io/${{ env.IMAGE_NAME }}
           tags: |
-            dev
-            ${{ env.RELEASE_VERSION }}-dev
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:dev
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.RELEASE_VERSION }}-dev
+            ghcr.io/${{ env.IMAGE_NAME }}:dev
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ env.RELEASE_VERSION }}-dev
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
