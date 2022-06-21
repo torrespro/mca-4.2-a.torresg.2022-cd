@@ -54,6 +54,9 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
+      - name: Set Release version env variable
+        run: |
+          echo "RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
       - name: Download jar from previous job
         uses: actions/download-artifact@v3
         with:
@@ -90,6 +93,7 @@ jobs:
             ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             dev
+            ${{ env.RELEASE_VERSION }}-dev
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
