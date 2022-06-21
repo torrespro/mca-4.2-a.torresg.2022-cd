@@ -99,12 +99,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: |
-            torrespro/${{ env.IMAGE_NAME }}
-            ghcr.io/${{ env.IMAGE_NAME }}
-          tags: |
-            dev
-            ${{ env.RELEASE_VERSION }}-dev
+          images: torrespro/${{ env.IMAGE_NAME }},ghcr.io/${{ env.IMAGE_NAME }}
+          tags: dev,${{ env.RELEASE_VERSION }}-dev
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
